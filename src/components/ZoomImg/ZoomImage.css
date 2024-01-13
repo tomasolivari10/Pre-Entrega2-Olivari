@@ -1,0 +1,17 @@
+ .zoomable-image-container {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .zoomable-image {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 70%;
+    margin: 30px 10px;
+  }
+  
+  .zoomable-image-container.zoomed .zoomable-image {
+    transform: scale(1.3);
+  }
+   
+
