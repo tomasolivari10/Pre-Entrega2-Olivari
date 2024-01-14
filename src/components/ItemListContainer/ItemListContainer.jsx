@@ -1,96 +1,28 @@
-/* import React from "react";
-import { useState, useEffect } from "react";
-import obtenerProductos from "../utilidades/data.js";
-import { productos } from "../utilidades/data.js";
-import ItemList from "./ItemList.jsx";
-import { useParams } from "react-router-dom"; //hook de react-router-dom
-
-function ItemListContainer({ greeting }) {
-  const [products, setProducts] = useState([]);
-  const [searchProducts, setSearchProducts] = useState("");
-  const [newProducts, setNewProducts] = useState([]);
-
-  const { category } = useParams();
-
-  useEffect(() => {
-    obtenerProductos
-      .then((response) => {
-        const filteredProducts = category
-          ? response.filter((product) => product.categoria === category)
-          : searchProducts
-          ? newProducts //category es el parametro dinamico que desestructuramos y cambia cual se elija.
-          : response; //sino existe ninguna categoria me devuelve todos los productos (response)
-
-        setProducts(filteredProducts);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log("Finalizo la promesa");
-      });
-  }, [category, newProducts]); //incluimos category en el array para que si categoria cambia se ejecuta todo de nuevo, por que si queda vacio, el useEffect solo se ejecuta al montar el componente.
-
-  const handleInput = (e) => {
-    const term = e.target.value;
-    setSearchProducts(term);
-
-    if (!term) {
-      setProducts(productos);
-    } else {
-      filtrar(term);
-    }
-  };
-
-  const filtrar = (terminoBusqueda) => {
-    const results = products.filter((product) => {
-      return (
-        product.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
-        product.modelo.toLowerCase().includes(terminoBusqueda.toLowerCase())
-      );
-    });
-    setNewProducts(results);
-  };
-
-  return (
-    <>
-      <h1 className="text-3xl text-center mt-24">{greeting}</h1>;
-      <input
-        type="text"
-        placeholder="Busca tu producto..."
-        value={searchProducts}
-        onChange={handleInput}
-      />
-      <ItemList products={products} />
-    </>
-  );
-}
-
-export default ItemListContainer;
- */
-
 import React, { useState, useEffect } from "react";
 import obtenerProductos from "../utilidades/data.js";
 import ItemList from "./ItemList.jsx";
 import { useParams } from "react-router-dom";
 
 function ItemListContainer({ greeting }) {
-  const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const { category } = useParams();
+
+  const [products, setProducts] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const { category } = useParams() //category es el parametro dinamico que desestructuramos y cambia segun cual se elija.
 
   
-
   useEffect(() => {
     obtenerProductos
       .then((response) => {
         const filteredProducts = response.filter((product) => {
           const matchesCategory = !category || product.categoria === category;
+          //matchesCategory es true si category es falsy o si la categoria coincide con la seleccionada.
           const matchesSearch = !searchTerm || matchesSearchTerm(product);
-          
-          return matchesCategory && matchesSearch;
+          //marchesSearch es true si searchTerm es falsy o si la funcion invocada (matchesSearchTerm) retorno una coincidencia segun lo ingresado en el input.
+          return matchesCategory && matchesSearch; 
         });
-
+        //si category y searchTerm son falsy ambas variables son true por el operador !(negacion) y todos los productos
+        //pasan la condicion de filtrado, es decir, se renderizan todos los productos.
         setProducts(filteredProducts);
       })
       .catch((error) => {
@@ -101,6 +33,7 @@ function ItemListContainer({ greeting }) {
       });
   }, [category, searchTerm]);
 
+  //funcion para almacenar en el estado lo ingresado en el input
   const handleInput = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -117,6 +50,8 @@ function ItemListContainer({ greeting }) {
     <>
     <div className="flex justify-between mt-24 mb-20">
     <h1 className="text-3xl text-center ml-24">{greeting}</h1>
+
+      {/* INPUT ADICIONAL PARA FILTRAR POR MODELO O DEPORTE*/}
       <input className="w-60 mr-24 rounded-md p-1"
         type="text"
         placeholder="Busca por modelo o deporte..."

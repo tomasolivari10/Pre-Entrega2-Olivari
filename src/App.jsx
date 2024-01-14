@@ -17,6 +17,7 @@ function App() {
         <Route path="/categories/:category" element={<ItemListContainer greeting="Bienvenidos a RaquetSports" />}/>
         <Route path="/details/:id" element={<ItemDetailContainer />} />
         {/* :category es un parametro dinamico que va a cambiar, segun en que categoria se haga click. */}
+        <Route path="*" element={<ItemListContainer greeting="Bienvenidos a RaquetSports" />} />
       </Routes>
     <Footer/>
     </BrowserRouter>
