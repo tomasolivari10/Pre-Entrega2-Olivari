@@ -5,13 +5,12 @@
   
   .zoomable-image {
     transition: transform 0.5s ease;
-    width: 100%;
-    height: 70%;
-    margin: 30px 10px;
+    border-radius: 8%;
   }
+
   
   .zoomable-image-container.zoomed .zoomable-image {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
    
 

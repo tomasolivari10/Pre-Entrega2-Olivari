@@ -11,10 +11,23 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@ionic/react": "^7.6.5",
     "drift-zoom": "^1.5.1",
+    "firebase": "^10.7.2",
+    "ionicons": "^7.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.1"
+    "react-hook-form": "^7.50.0",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.21.1",
+    "react-spinners": "^0.13.8",
+    "react-switch": "^7.0.0",
+    "react-toastify": "^10.0.4",
+    "sweetalert2": "^11.10.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

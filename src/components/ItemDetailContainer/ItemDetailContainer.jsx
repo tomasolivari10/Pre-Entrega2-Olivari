@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
+
 import ItemDetails from "../ItemDetail/ItemDetails";
-import  obtenerProductos  from "../utilidades/data.js";
 import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../../database/database";
 
 const ItemDetailContainer = () => {
   
-
   const [producto, setProducto] = useState({})
+  const [loading, setLoading] = useState(true)
   const { id } = useParams() //el hook useParams devuelve los valores extraidos como strings por defecto, por eso el id debe ser un string.
 
-  useEffect(()=>{
-    obtenerProductos
-      .then((response)=> {
-        const productoEncontrado = response.find(producto=> producto.id === id)
-        setProducto(productoEncontrado)
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
+  useEffect(() => {
 
-  }, [])
+    const productRef = doc(db, "products", id);
+    getDoc(productRef)
+      .then((response) => {
+        const productDb = { id: response.id, ...response.data() };
+        setProducto(productDb);
+        setLoading(false)
+      })
+      .catch((error) => console.log(error));
+      
+  }, [id]);
+
 
   return (
-    <div>
-      <ItemDetails product={producto} />
+    <div >
+      <ItemDetails product={producto} stock={producto.stock} loading={loading} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
 import './ZoomImage.css';
 
 const ZoomImage = ({ src, alt }) => {
@@ -19,15 +19,10 @@ const ZoomImage = ({ src, alt }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img src={src} alt={alt} className="zoomable-image" />
+      <img src={src} alt={alt} className="zoomable-image w-[100%] h-[100%] p-6" />
     </div>
   );
 };
-
-/* ZoomImage.propTypes = {
-  src: PropTypes.string.isRequired,//el atributo src debe ser un string, en este caso la url de la imagen.
-  alt: PropTypes.string.isRequired,
-}; */
 
 export default ZoomImage;
 

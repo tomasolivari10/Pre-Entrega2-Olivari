@@ -1,13 +1,16 @@
-import React from 'react'
+import {useContext} from  "react"
+
+import {cartContext} from "../../Context/CartContext"
 
 function CartWidget() {
   
-  const notificationCount = 3;
+  const {cart, cartQuantity} = useContext(cartContext)
   
-    return (
+  
+  return (
       <div>
-        <i className="fas fa-shopping-cart"></i>
-        <span className="pl-1">{notificationCount}</span>
+        <i className="fas fa-shopping-cart"></i> 
+        {cart.length > 0 && <span className="pl-1">{cartQuantity}</span>}
       </div>
   )
 }
