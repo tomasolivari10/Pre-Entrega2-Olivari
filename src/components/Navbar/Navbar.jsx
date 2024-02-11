@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef} from "react";
 
 import CartWidget from "./CartWidget";
-import logo from "../../assets/img/LOGO6.png"
+import logoNav from "../../assets/logoraquetsports.png"
 import { Link } from "react-router-dom";
 import { appFirebase } from "../../database/database.js";
 import { getAuth, signOut } from "firebase/auth";
@@ -36,9 +36,9 @@ function Navbar({usuario}) {
     <>
     {usuario ?  (
       <nav className="md:flex justify-between items-center bg-cyan-600 fixed w-full h-auto top-0 z-10">
-    <div className="py-4">
+    <div>
       <Link to="/" className="text-xl">
-        <img className="h-[50px] w-[80px] " src={logo} alt="" />
+        <img className="h-[80px] w-[100px] " src={logoNav} alt="" />
       </Link>
     </div>
     <div ref={menuRef}>{/* contenedor referenciado */}
@@ -89,8 +89,8 @@ function Navbar({usuario}) {
     </div>
   </nav> ) : (
         <>
-      <div className="flex justify-center mr-7">
-        <img src={logo} className="h-[100px] w-[100px] mt-1" alt="" />
+      <div className="flex justify-center mr-10">
+        <img src={logoNav} className="h-[100px] w-[100px] mt-1" alt="" />
         <h2 className="text-center text-4xl pt-7">
         RaquetStore</h2>
         </div>
