@@ -36,7 +36,7 @@ function Navbar({usuario}) {
     <>
     {usuario ?  (
       <nav className="md:flex justify-between items-center bg-cyan-600 fixed w-full h-auto top-0 z-10">
-    <div className="px-3 py-4 ">
+    <div className="py-4">
       <Link to="/" className="text-xl">
         <img className="h-[50px] w-[80px] " src={logo} alt="" />
       </Link>
@@ -80,7 +80,7 @@ function Navbar({usuario}) {
         <hr />
         <li
           onClick={() => signOut(auth)}
-          className="md:pl-1 md:pr-1 py-6 lg:px-3 cursor-pointer duration-200 hover:text-white"
+          className="md:pl-1 md:pr-1 py-6  cursor-pointer duration-200 hover:text-white"
         >
           Logout
         </li>
@@ -89,7 +89,7 @@ function Navbar({usuario}) {
     </div>
   </nav> ) : (
         <>
-      <div className="flex justify-center">
+      <div className="flex justify-center mr-7">
         <img src={logo} className="h-[100px] w-[100px] mt-1" alt="" />
         <h2 className="text-center text-4xl pt-7">
         RaquetStore</h2>
