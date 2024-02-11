@@ -49,7 +49,7 @@ function Navbar({usuario}) {
         ></ion-icon>
       </div>
       <ul
-        className={`absolute bg-cyan-600 w-full z-[-1] pl-7 pr-8 md:z-auto md:pl-0 md:flex md:justify-center md:items-center md:space-x-4 md:w-auto md:static transition ease-in-out duration-1000  ${
+        className={`absolute bg-cyan-600 w-full z-[-1] pl-5 pr-7 md:z-auto md:pl-0 md:flex md:justify-center md:items-center md:space-x-4 md:w-auto md:static transition ease-in-out duration-1000  ${
           isOpen ? "top-14" : "left-[-800px]"
         }`}
       >
