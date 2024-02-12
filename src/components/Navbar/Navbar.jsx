@@ -38,11 +38,11 @@ function Navbar({usuario}) {
       <nav className="md:flex justify-between items-center bg-cyan-600 fixed w-full h-auto top-0 z-10">
     <div>
       <Link to="/" className="text-xl">
-        <img className="h-[80px] w-[100px] " src={logoNav} alt="" />
+        <img className="h-[80px] w-[80px] md:w-[95px] " src={logoNav} alt="" />
       </Link>
     </div>
     <div ref={menuRef}>{/* contenedor referenciado */}
-      <div className="text-4xl absolute mt-[7px] top-4 right-6 cursor-pointer md:hidden">
+      <div className="text-4xl absolute mt-[7px] top-4 right-4 md:right-6 cursor-pointer md:hidden">
         <ion-icon
           name={isOpen ? "close" : "menu"}
           onClick={toggleMenu}
@@ -90,10 +90,11 @@ function Navbar({usuario}) {
   </nav> ) : (
         <>
       <div className="flex justify-center mr-10">
-        <img src={logoNav} className="h-[100px] w-[100px] mt-1" alt="" />
-        <h2 className="text-center text-4xl pt-7">
-        RaquetStore</h2>
+        <div className="flex justify-center items-center flex-wrap mt-3 md:mt-4 md:mb-4">
+          <img className="w-[80px] h-[80px] md:w-[100px] h-[100px]" src={logoNav} alt="" />
+          <p className="font-semibold text-3xl md:text-[45px]">aquetSports</p>
         </div>
+      </div>
         <p className="text-center">Ingresa o registrate para descubrir nuestra amplia variedad de productos</p>
         </>
         )}

@@ -34,16 +34,16 @@ const Carousel = ({elementoDestinoRef}) => {
 
   return (
     <div className="relative ">
-      <button onClick={prevImage} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-3xl text-cyan-700">
+      <button onClick={prevImage} className="absolute left-1 top-1/2 transform -translate-y-1/2 text-3xl text-cyan-700">
         &#10094;
       </button>
 
       <img src={images[currentImageIndex].url} alt={images[currentImageIndex].description} 
-      className="w-full h-[65vh] mt-[60px] carousel-img md:h-[78vh]"/>
+      className="w-full md:w-[96%] mt-[80px] m-auto h-[65vh] md:mt-[100px] carousel-img md:h-[80vh]"/>
 
         <i onClick={handleClick} className="fas fa-chevron-down fa-3x" aria-hidden="true" ></i>
 
-      <button onClick={nextImage} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-3xl text-cyan-700">
+      <button onClick={nextImage} className="absolute right-1 top-1/2 transform -translate-y-1/2 text-3xl text-cyan-700">
         &#10095;
       </button>
     </div>

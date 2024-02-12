@@ -103,9 +103,9 @@ function ItemListContainer() {
         {noResults && <h2 className="mt-20 text-center md:ml-24 text-xl">No se encontraron coincidencias con la marca o producto ingresados.</h2>}
       </div>
       {/* INPUT ADICIONAL PARA FILTRAR POR MODELO O DEPORTE*/}
-      <input className="w-56 text-md mt-4 p-2 text-black rounded-md md:mr-24 md:mt-[5px] md:fixed md:top-4 md:left-[18%] lg:left-[40%] md:z-10"
+      <input className="w-[205px] md:w-[205px] text-md mt-4 p-2 text-black rounded-md ml-3 md:mr-24 mt-[5px] fixed top-4 md:left-[18%] lg:left-[40%] z-10"
         type="text"
-        placeholder="Busca por modelo o deporte..."
+        placeholder="Buscar productos, marcas..."
         value={searchTerm}
         onChange={handleInput}
       />
