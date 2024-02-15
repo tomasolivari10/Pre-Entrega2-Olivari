@@ -10,6 +10,7 @@ const Login = () => {
   const { control, handleSubmit, formState: { errors } } = useForm(); //formState{errors} identifica que input esta fallando
   const [registrando, setRegistrando] = useState(false);
   const [errorAutenticacion, setErrorAutenticacion] = useState("")
+  const [errorRegistro, setErrorRegistro] = useState("")
 
   const authentication = async (data) => {
     const { email, password } = data; //email y password son los id que contienen los valores del correo electrónico y la contraseña introducidos por el usuario en el formulario.
@@ -21,15 +22,21 @@ const Login = () => {
         await signInWithEmailAndPassword(auth, email, password);//si ya esta registrada, la ingresa.
       }
     } catch (error) {
+      if (registrando && error.code === 'auth/email-already-in-use') {
+        //si registrando es true, es decir se esta en el proceso de registro y no de inicio y la cuenta ya esta en uso, renderiza ese error.
+        setErrorRegistro("La cuenta ingresada ya existe");
+      } else {
         setErrorAutenticacion("Los datos ingresados son incorrectos o la cuenta no está registrada.");
+      }
       console.error("Error en la autenticación:", error.message);
-
-      setTimeout(()=> {
-        setErrorAutenticacion("")
-      },5000)
+  
+      setTimeout(() => {
+        setErrorAutenticacion("");
+        setErrorRegistro("");
+      }, 5000);
     }
   };
-  
+
   return (
     <div className="pt-8 pb-10">
       <div className="w-72 sm:w-96 m-auto border-2 border-slate-200 form px-10 pb-7 pt-5 rounded-lg">
@@ -102,6 +109,7 @@ const Login = () => {
           />
           {errors.password && <p className="error-message">{errors.password.message}</p>}
           {errorAutenticacion && <p className="text-md error-message">{errorAutenticacion}</p>}
+          {errorRegistro && <p className="text-md error-message">{errorRegistro}</p>}
           <button type="submit" className="p-2 bg-cyan-600 hover:bg-cyan-500 mt-7 rounded-lg duration-300">{registrando ? "Registrarse" : "Iniciar sesión"}</button>
         </form>
         <h4 className="mt-2 text-center text-slate-500">{registrando ? "Si ya tienes cuenta" : "No tienes cuenta?"}

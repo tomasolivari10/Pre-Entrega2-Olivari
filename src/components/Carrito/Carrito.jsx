@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext  } from "react";
 
 import { cartContext } from "../../Context/CartContext";
 import CartProducts from "./CartProducts";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 function Carrito() {
   const { cart } = useContext(cartContext);
+
 
   return (
     <div className="min-h-screen">

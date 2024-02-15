@@ -1,10 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext} from "react";
+
+import useLocalStorage from "../components/UseLocalStorage/useLocalStorage";
 
 export const cartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
- 
+  const [cart, setCart]  = useLocalStorage("products", []);
+  
 
   const addProducts = (product) => {
     const productRepeat = cart.find((item) => item.id === product.id); //recorro el carrito con el metodo find y buscamos si hay un item

@@ -16,6 +16,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@ionic/react": "^7.6.5",
+    "@mercadopago/sdk-react": "^0.0.17",
+    "axios": "^1.6.7",
     "drift-zoom": "^1.5.1",
     "firebase": "^10.7.2",
     "ionicons": "^7.2.2",

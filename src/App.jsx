@@ -1,24 +1,25 @@
-import { useState } from "react";
-
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import Carrito from "./components/Carrito/Carrito";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Footer from "./components/Footer/Footer"
 import FormCheckOut from "./components/Form/FormCheckOut";
-import { ToastContainer } from 'react-toastify'
 import Login from "./components/Login/Login"
+import Footer from "./components/Footer/Footer"
+
+import useLocalStorage from "./components/UseLocalStorage/useLocalStorage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify'
 import {appFirebase} from "./database/database.js"
 import {getAuth, onAuthStateChanged} from "firebase/auth"
+
 const auth = getAuth(appFirebase)
 
-import "./index.css";
 import "react-toastify/dist/ReactToastify.css"
+import "./index.css";
 
 function App() {
-  const [usuario, setUsuario] = useState(null)
-  
+  const [usuario, setUsuario] = useLocalStorage("usuario", null); 
+  //uso del custom hook useLocalStorage para almacenar la informacion de la cuenta logueada y que no se cierre sesion ante un refresh de la pagina.
 
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if(usuarioFirebase){//si usuarioFirebase es true, es decir, si hay algun usuario logueado

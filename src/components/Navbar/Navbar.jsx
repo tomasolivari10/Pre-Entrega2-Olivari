@@ -90,9 +90,9 @@ function Navbar({usuario}) {
   </nav> ) : (
         <>
       <div className="flex justify-center mr-10">
-        <div className="flex justify-center items-center flex-wrap mt-3 md:mt-4 md:mb-4">
-          <img className="w-[80px] h-[80px] md:w-[100px] h-[100px]" src={logoNav} alt="" />
-          <p className="font-semibold text-3xl md:text-[45px]">aquetSports</p>
+        <div className="flex justify-center items-center flex-wrap mt-3 md:mt-2 md:mb-2">
+          <img className="w-[80px] h-[80px] md:w-[100px] md:h-[100px]" src={logoNav} alt="" />
+          <p className="font-semibold text-3xl text-gray-700 md:text-[45px]">aquetSports</p>
         </div>
       </div>
         <p className="text-center">Ingresa o registrate para descubrir nuestra amplia variedad de productos</p>

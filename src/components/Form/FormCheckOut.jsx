@@ -5,12 +5,22 @@ import { collection, addDoc } from "firebase/firestore";
 import db from "../../database/database.js";
 import CheckOut from "./CheckOut";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../UseLocalStorage/useLocalStorage";
+
+
 
 
 function FormCheckOut({usuario}) {
-
+  
   const { cart, setCart, total } = useContext(cartContext);
   const [idOrder, setIdOrder] = useState(null);
+
+
+  const [text, setText] = useLocalStorage("formulario", "") //key("formulario") y {} valor inicial en caso que no haya nada almacenado.
+  
+  const handleChange = (event) => {
+    setText({ ...text, [event.target.name]: event.target.value });
+  };
 
 
   const handleSubmit = (data) => {
@@ -29,11 +39,11 @@ function FormCheckOut({usuario}) {
 
     const ordersRef = collection(db, "orders");
     addDoc(ordersRef, orden)
-      .then((response) => {
-        setIdOrder(response.id);
-      })
-      .catch((error) => console.log(error));
-
+    .then((response) => {
+      setIdOrder(response.id);
+    })
+    .catch((error) => console.log(error));
+    
       setCart([])
   };
 
@@ -56,6 +66,8 @@ function FormCheckOut({usuario}) {
       ) : (
         <CheckOut
           handlesubmit={handleSubmit}
+          handleChange={handleChange}
+          text={text}
         />
       )}
     </>

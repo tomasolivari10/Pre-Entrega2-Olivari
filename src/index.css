@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; 
     margin: 0;
     padding: 0;
 }
@@ -17,6 +17,7 @@
 
  body {
   background-color: rgb(238, 238, 238);
+  
 }
 
 .grid-container {
@@ -36,12 +37,9 @@
   font-size: small;
 }
 
-.label{
-  margin-top: 10px;
-}
 
 .carousel-img {
-  animation: anopacity 3s ease-in-out;
+  animation: anopacity 2s ease-in-out;
 }
 
 @keyframes anopacity {

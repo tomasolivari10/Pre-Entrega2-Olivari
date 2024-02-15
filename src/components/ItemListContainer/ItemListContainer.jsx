@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { collection, getDocs, query, where} from "firebase/firestore"
 import db from "../../database/database.js"
 import { BeatLoader } from "react-spinners";
+import logo from "../../assets/logoraquetsports.png"
 
 
 function ItemListContainer() {
@@ -13,14 +14,13 @@ function ItemListContainer() {
   const [products, setProducts] = useState([])
   const [originalProducts, setOriginalProducts] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [noResults, setNoResults] = useState(false)
   const [loading, setLoading] = useState(true)
   const elementoDestinoRef = useRef()
 
   const { category } = useParams() //category es el parametro dinamico que desestructuramos y cambia segun cual se elija.
 
-  
+
   useEffect(() => {  
     let consulta
     let productsRef = collection(db, "products")
@@ -56,23 +56,13 @@ function ItemListContainer() {
     const orderedProducts = [...products].sort((a, b) => a.precio - b.precio )
     setProducts(orderedProducts)
   }
+ //spread operator para crear copias de los arrays products antes de ordenarlos.
 
   const priceGreaterThan = () => {
     const productsOrdered = [...products].sort((a, b) => b.precio - a.precio)
     setProducts(productsOrdered)
   }
 
-  const handleScreenWidth = () => {
-    setScreenWidth(window.innerWidth)
-  }
-
-  useEffect(()=> {
-      window.addEventListener("resize", handleScreenWidth)
-
-      return () => {
-        window.removeEventListener("resize", handleScreenWidth)
-      }
-  }, [])
  
   //funcion para almacenar en el estado lo ingresado en el input
   const handleInput = (e) => {
@@ -90,25 +80,28 @@ function ItemListContainer() {
   return (
     <>
     <Carousel elementoDestinoRef={elementoDestinoRef}/>
-    <div className="flex flex-wrap justify-center md:flex-nowrap md:justify-between" ref={elementoDestinoRef}>{/* contenedor referenciado */}
+    <div className="flex justify-center items-center flex-wrap mt-3 md:mt-4 md:mb-4" >
+      <img className="w-[80px] h-[80px] md:w-[100px] md:h-[100px]" src={logo} alt=""  ref={elementoDestinoRef}/> {/* contenedor referenciado */}
+      <p className="font-semibold text-3xl text-gray-700 md:text-[45px]">aquetSports</p>
+    </div>
+    <div className="flex flex-wrap justify-center md:flex-nowrap md:justify-between">
+      {/* INPUT ADICIONAL PARA FILTRAR POR MODELO O DEPORTE*/}
+      <input className="w-[205px] md:w-[205px] text-md  p-2 text-black rounded-md ml-3 md:mr-24 mt-[5px] fixed top-4 md:left-[18%] lg:left-[40%] z-10"
+        type="text"
+        placeholder="Buscar productos, marcas..."
+        value={searchTerm}
+        onChange={handleInput}
+      />
       {loading ? (
         <div className="flex justify-center items-center m-auto mt-52">
           <p>Cargando...</p>
           <BeatLoader/>
         </div>
       ) : (
-      <>
+        <>
       <div>
-        {screenWidth > 768 && <h1 className="text-3xl md:text-center mt-12  md:ml-24 ">{category}</h1> }
-        {noResults && <h2 className="mt-20 text-center md:ml-24 text-xl">No se encontraron coincidencias con la marca o producto ingresados.</h2>}
+        {noResults && <h2 className=" text-center md:ml-8 text-xl">No se encontraron coincidencias con la marca o producto ingresados.</h2>}
       </div>
-      {/* INPUT ADICIONAL PARA FILTRAR POR MODELO O DEPORTE*/}
-      <input className="w-[205px] md:w-[205px] text-md mt-4 p-2 text-black rounded-md ml-3 md:mr-24 mt-[5px] fixed top-4 md:left-[18%] lg:left-[40%] z-10"
-        type="text"
-        placeholder="Buscar productos, marcas..."
-        value={searchTerm}
-        onChange={handleInput}
-      />
       </>
       )}
     </div>
@@ -118,7 +111,8 @@ function ItemListContainer() {
       setProducts={setProducts} 
       originalProducts={originalProducts} 
       priceGreaterThan={priceGreaterThan} 
-      priceLessThan={priceLessThan}/>
+      priceLessThan={priceLessThan}
+      loading={loading}/>
     </>
   );
 }

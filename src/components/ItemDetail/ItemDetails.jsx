@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext  } from "react";
 
 import ZoomImage from "../ZoomImg/ZoomImage";
 import { BeatLoader } from "react-spinners";
@@ -8,8 +8,37 @@ import { cartContext } from "../../Context/CartContext";
 
 
 function ItemDetails({ product, loading, stock}) {
-  const { addProducts } = useContext(cartContext);
+  const { cart, addProducts } = useContext(cartContext);
+
   
+  const handleAddToCart = () => {
+    const productInCart = cart.find((item) => item.id === product.id);
+    if (productInCart && productInCart.quantity >= product.stock) {
+      toast.error('Alcanzaste el limite de unidades disponibles en este producto!', {
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      addProducts(product)
+      toast.success('Producto añadido al carrito!', {
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+    const quantityProduct = cart.find(item=> item.id === product.id)
+    const quantity = quantityProduct ? quantityProduct.quantity : 0;
+  
+
   return (
     <div className="pb-16 pt-28">
       {loading ? (
@@ -34,21 +63,17 @@ function ItemDetails({ product, loading, stock}) {
                 <p className="text-md font-bold">Stock disponible:</p>
                 <p className=" ml-2">{`${stock} unidades`}</p>
               </div>
+              <p  className="font-bold text-md">Unidades añadidas:  <span className="font-normal">({quantity})</span></p>
               <button
-                 onClick={() => {
-                    addProducts(product);
-                }}
+                 onClick= { handleAddToCart}
                 className="bg-cyan-600 hover:bg-cyan-500 p-2 text-white mt-6 mr-3 font-semibold rounded-md duration-200">
                 Añadir al Carrito
               </button>
-              
               <Link to="/carrito"> 
                 <button  className="bg-cyan-600 hover:bg-cyan-500 p-2 text-white mt-6 font-semibold rounded-md duration-200">
                    Ir al carrito
                    </button>
                 </Link>
-
-              
             </div>
           </div>
         </div>

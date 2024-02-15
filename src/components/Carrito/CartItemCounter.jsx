@@ -34,15 +34,13 @@ function CartItemCounter({ product }) {
           if(product.quantity < product.stock){
             addProducts(product);
           }else{
-            toast.warning('Alcanzaste el limite de unidades disponibles!', {
-              position: "top-right",
+            toast.error('Alcanzaste el limite de unidades disponibles!', {
               autoClose: 1500,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "colored",
             })
           }
         }}

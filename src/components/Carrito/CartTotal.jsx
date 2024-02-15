@@ -13,7 +13,7 @@ function CartTotal() {
       Swal.fire({
         title: "¿Estás seguro?",
         icon: "question",
-        html: `Se eliminaran los ${cart.reduce((total, element)=> total + element.quantity, 0)} productos del carrito `, 
+        html: `Se eliminaran ${cart.reduce((total, element)=> total + element.quantity, 0)} producto/os del carrito `, 
         showCancelButton: true,
         focusConfirm: false,
         confirmButtonText: "Sí",
