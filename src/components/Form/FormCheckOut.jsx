@@ -16,7 +16,7 @@ function FormCheckOut({usuario}) {
   const [idOrder, setIdOrder] = useState(null);
 
 
-  const [text, setText] = useLocalStorage("formulario", "") //key("formulario") y {} valor inicial en caso que no haya nada almacenado.
+  const [text, setText] = useLocalStorage("formulario", "") //key("formulario") y "" valor inicial en caso que no haya nada almacenado.
   
   const handleChange = (event) => {
     setText({ ...text, [event.target.name]: event.target.value });

@@ -16,6 +16,7 @@ function ItemListContainer() {
   const [searchTerm, setSearchTerm] = useState("")
   const [noResults, setNoResults] = useState(false)
   const [loading, setLoading] = useState(true)
+
   const elementoDestinoRef = useRef()
 
   const { category } = useParams() //category es el parametro dinamico que desestructuramos y cambia segun cual se elija.
@@ -46,8 +47,9 @@ function ItemListContainer() {
       setProducts(filteredProducts);
       setOriginalProducts(filteredProducts)
       setNoResults(filteredProducts.length === 0)
-      setLoading(false)//establezco la variable en false una vez que los productos cargaron exitosamente
     })
+    .catch((error)=> console.log(error))
+    .finally(()=> setLoading(false)) //establezco la variable en false una vez que los productos cargaron exitosamente
   }, [category, searchTerm]);
  
   

@@ -18,10 +18,9 @@ const ItemDetailContainer = () => {
       .then((response) => {
         const productDb = { id: response.id, ...response.data() };
         setProducto(productDb);
-        setLoading(false)
       })
-      .catch((error) => console.log(error));
-      
+      .catch((error) => console.log(error))
+      .finally(()=> setLoading(false))
   }, [id]);
 
 

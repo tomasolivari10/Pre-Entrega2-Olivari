@@ -9,7 +9,7 @@ const CartContextProvider = ({ children }) => {
   
 
   const addProducts = (product) => {
-    const productRepeat = cart.find((item) => item.id === product.id); //recorro el carrito con el metodo find y buscamos si hay un item
+    const productRepeat = cart.find((item) => item.id === product.id); //recorro el carrito con el metodo find y busco si hay un item
     //que tenga el mismo id que el producto que el usuario quiere agregar y lo almaceno en la constante, que va a contener ese producto en forma de objeto o no encuentra y contiene undefined
 
     if (productRepeat) {

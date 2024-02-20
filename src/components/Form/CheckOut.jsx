@@ -10,7 +10,7 @@ function CheckOut({ handlesubmit, handleChange, text }) {
   });
 
  const handleClick = ()=> {
-    localStorage.setItem("formulario", "")
+    localStorage.setItem("formulario", "") //funcion para resetear el formulario luego de ser enviado.
   }
 
   return (

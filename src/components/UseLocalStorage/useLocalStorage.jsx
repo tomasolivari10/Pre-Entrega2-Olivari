@@ -6,14 +6,14 @@ function useLocalStorage(key, initialValue) {
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue; //parseo item si es que tiene algo, sino retorno el valor inicial
+      return item ? JSON.parse(item) : initialValue; //si item es true, es decir hay algo almacenado, lo parseo, sino retorno el valor inicial
     } catch (error) {
       console.error(error);
-      return initialValue;
+      return initialValue; //si hay un error al parsearlo, se devuelve el valor inicial.
     }
 });
 
-  const setValue = value => {
+  const setValue = value => {  //funcion para actualizar el valor de storedValue y tambien guardarlo en el localStorage.
         try{
             setStoredValue(value)
             window.localStorage.setItem(key, JSON.stringify(value))
